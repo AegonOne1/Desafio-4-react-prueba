@@ -1,7 +1,24 @@
 import { Table } from 'react-bootstrap'
 
-const Tabla = ({ datos }) => {
-  const datosFiltrados = Object.values(datos).filter(indicador => {
+const Tabla = ({ datos, ordenAscendente }) => {
+ 
+ 
+  const compararDatosTabla = (a, b) => {
+    // console.log(compararDatosTabla)
+    const nombre1 = a.nombre.toLowerCase()
+    const nombre2 = b.nombre.toLowerCase()
+    if (nombre1 < nombre2) {
+      return ordenAscendente ? -1 : 1
+    }
+    if (nombre1 > nombre2) {
+      return ordenAscendente ? 1 : -1
+    }
+    return 0
+  }
+
+  const datosOrdenados = datos.slice().sort(compararDatosTabla)
+
+  const datosFiltrados = datosOrdenados.filter(indicador => {
     return indicador.nombre && indicador.valor && indicador.unidad_medida && indicador.fecha
   })
 
@@ -18,14 +35,15 @@ const Tabla = ({ datos }) => {
       <tbody>
         {datosFiltrados.map((indicador, index) => (
           <tr key={index}>
-          <td>{indicador.nombre}</td>
-          <td>{indicador.valor}</td>
-          <td>{indicador.unidad_medida}</td>
-          <td>{indicador.fecha.substring(0, 10)}</td>
-        </tr>
+            <td>{indicador.nombre}</td>
+            <td>{indicador.valor}</td>
+            <td>{indicador.unidad_medida}</td>
+            <td>{indicador.fecha.substring(0, 10)}</td>
+          </tr>
         ))}
-        </tbody>
+      </tbody>
     </Table>
-    )
+  )
 }
+
 export default Tabla
