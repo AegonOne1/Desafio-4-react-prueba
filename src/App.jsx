@@ -16,7 +16,7 @@ const App = () => {
     setBusqueda(valor)
   }
 
-  const toggleOrden = () => {
+  const handleClick = () => {
     setOrdenAscendente(!ordenAscendente)
   }
 
@@ -25,10 +25,14 @@ const App = () => {
   })
 
   return (
-    <div>
-      <h2>Datos Financieros</h2>
-      <Buscador onBuscar={handleBusqueda} />
-      <Orden onClick={toggleOrden} ordenAscendente={ordenAscendente} />
+    <div className='container'>
+      <header className='title'>
+        <h1>Datos Financieros</h1>
+      </header>
+      <div className='interface'>
+        <Buscador onBuscar={handleBusqueda} />
+        <Orden onClick={handleClick} ordenAscendente={ordenAscendente} />
+      </div>
       <Tabla datos={datosFiltrados} ordenAscendente={ordenAscendente} />
     </div>
   )

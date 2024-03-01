@@ -2,7 +2,7 @@ import { Button } from "react-bootstrap"
 
 const Orden = ({ onClick }) => {
     return(
-        <Button onClick={onClick}>Ordenar Descendente</Button>
+        <Button variant="light" onClick={onClick}>Ordenar</Button>
     )
 }
 

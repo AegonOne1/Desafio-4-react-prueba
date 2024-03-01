@@ -6,7 +6,7 @@ const Buscador = ({ onBuscar }) => {
     return(
         <input 
         type="text"
-        placeholder="Buscar"
+        placeholder="Busca tu moneda"
         onChange={handleChange} 
         />
     )
